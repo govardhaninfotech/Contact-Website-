@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>John Willums | Portfolio</title>
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary: #64748b;
+            --light: #f8fafc;
+            --dark: #0f172a;
+            --success: #10b981;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            z-index: 100;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--primary);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--secondary);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--primary);
+        }
+
+        .mobile-nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--secondary);
+        }
+
+        section {
+            padding: 5rem 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        #hero {
+            padding-top: 10rem;
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+            min-height: 100vh;
+        }
+
+        .hero-content {
+            flex: 1;
+        }
+
+        .hero-image {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+        }
+
+        .hero-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 50%;
+            border: 5px solid white;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: var(--dark);
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+
+        .title {
+            color: var(--secondary);
+            font-size: 1.25rem;
+            margin-bottom: 1.5rem;
+        }
+
+        p {
+            margin-bottom: 1.5rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            background-color: var(--primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 500;
+            transition: background-color 0.3s;
+        }
+
+        .btn:hover {
+            background-color: var(--primary-dark);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .skill {
+            background-color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+
+        .projects {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .project-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .project-image {
+            height: 200px;
+            /* background-color: var(--secondary); */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-weight: 700;
+            overflow: hidden;
+        }
+
+        .project-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .project-content {
+            padding: 1.5rem;
+        }
+
+        .project-title {
+            font-size: 1.2rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+
+        .social-link:hover {
+            transform: translateY(-3px);
+        }
+
+        footer {
+            background-color: white;
+            padding: 2rem 5%;
+            text-align: center;
+            color: var(--secondary);
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .experience-item,
+        .education-item {
+            margin-bottom: 2rem;
+        }
+
+        .exp-date,
+        .edu-date {
+            color: var(--secondary);
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            background-color: var(--success);
+            color: white;
+            border-radius: 999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-left: 0.75rem;
+        }
+
+        @media screen and (max-width: 768px) {
+            #hero {
+                flex-direction: column-reverse;
+                text-align: center;
+                padding-top: 8rem;
+            }
+
+            .hero-image {
+                margin-bottom: 2rem;
+            }
+
+            .mobile-nav-toggle {
+                display: block;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                flex-direction: column;
+                gap: 0;
+                background-color: white;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links a {
+                padding: 1rem 5%;
+                display: block;
+                width: 100%;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <div class="logo">John Willums</div>
+            <div class="nav-links" id="navLinks">
+                <a href="#hero" class="active">Home</a>
+                <a href="#about">About</a>
+                <a href="#skills">Skills</a>
+                <a href="#experience">Experience</a>
+                <a href="#projects">Projects</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <button class="mobile-nav-toggle" id="mobileNavToggle">
+                ☰
+            </button>
+        </nav>
+    </header>
+
+    <main>
+        <section id="hero">
+            <div class="hero-content">
+                <h1>John Willums</h1>
+                <p class="title">Senior Software Developer</p>
+                <p>I build innovative web and mobile solutions with a focus on performance and user experience. With
+                    over 8 years of experience in software development, I've helped companies transform their ideas into
+                    successful digital products.</p>
+                <div>
+                    <a href="#contact" class="btn">Get in Touch</a>
+                    <a href="#" class="btn btn-outline" style="margin-left: 1rem;" id="downloadCV">Download CV</a>
+                </div>
+                <div class="social-links">
+                    <a href="#" class="social-link">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z">
+                            </path>
+                            <rect x="2" y="9" width="4" height="12"></rect>
+                            <circle cx="4" cy="4" r="2"></circle>
+                        </svg>
+                    </a>
+                    <a href="#" class="social-link">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path
+                                d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
+                            </path>
+                        </svg>
+                    </a>
+                    <a href="#" class="social-link">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path
+                                d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z">
+                            </path>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="dem.webp" alt="John Willums">
+            </div>
+        </section>
+
+        <section id="about">
+            <h2>About Me</h2>
+            <p>I'm a passionate software developer with a strong background in building web and mobile applications. I
+                enjoy tackling complex problems and creating clean, efficient, and maintainable solutions. My approach
+                combines technical expertise with a deep understanding of user needs to deliver exceptional digital
+                experiences.</p>
+            <p>Outside of coding, I enjoy hiking, photography, and exploring new technologies. I'm constantly learning
+                and expanding my skills to stay at the forefront of the ever-evolving tech landscape.</p>
+        </section>
+
+        <section id="skills">
+            <h2>Skills</h2>
+            <div class="skills">
+                <div class="skill">JavaScript</div>
+                <div class="skill">TypeScript</div>
+                <div class="skill">React</div>
+                <div class="skill">Node.js</div>
+                <div class="skill">React Native</div>
+                <div class="skill">Python</div>
+                <div class="skill">GraphQL</div>
+                <div class="skill">AWS</div>
+                <div class="skill">Docker</div>
+                <div class="skill">PostgreSQL</div>
+                <div class="skill">MongoDB</div>
+                <div class="skill">Git</div>
+                <div class="skill">CI/CD</div>
+                <div class="skill">Agile</div>
+                <div class="skill">RESTful APIs</div>
+            </div>
+        </section>
+
+        <section id="experience">
+            <h2>Experience</h2>
+
+            <div class="experience-item">
+                <h3>Senior Software Developer <span class="badge">Current</span></h3>
+                <div class="exp-date">TechNova Solutions • 2021 - Present</div>
+                <p>Lead the development of multiple web and mobile applications, collaborating with cross-functional
+                    teams to deliver high-quality products on time and within budget. Implemented CI/CD pipelines and
+                    mentored junior developers.</p>
+            </div>
+
+            <div class="experience-item">
+                <h3>Software Developer</h3>
+                <div class="exp-date">Innovate Digital • 2018 - 2021</div>
+                <p>Developed and maintained web applications using React, Node.js, and GraphQL. Optimized application
+                    performance and implemented responsive designs. Collaborated with designers and product managers to
+                    enhance user experience.</p>
+            </div>
+
+            <div class="experience-item">
+                <h3>Junior Developer</h3>
+                <div class="exp-date">WebFront Technologies • 2016 - 2018</div>
+                <p>Built and maintained client websites and applications. Worked with various frontend technologies and
+                    gained experience in full-stack development. Participated in code reviews and team knowledge-sharing
+                    sessions.</p>
+            </div>
+
+            <h3>Education</h3>
+            <div class="education-item">
+                <h3>Bachelor of Science in Computer Science</h3>
+                <div class="edu-date">University of Technology • 2012 - 2016</div>
+                <p>Graduated with honors. Specialized in software engineering and web technologies. Led multiple student
+                    projects and participated in hackathons.</p>
+            </div>
+        </section>
+
+        <section id="projects">
+            <h2>Projects</h2>
+            <div class="projects">
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="c8da0175e9dba0109e4baaca8753b277.png" alt="E-commerce Platform" style="width: 80%;">
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">E-commerce Platform</h3>
+                        <p>A modern e-commerce solution with real-time inventory management, secure payment processing,
+                            and responsive design.</p>
+                        <div>
+                            <span class="skill">React</span>
+                            <span class="skill">Node.js</span>
+                            <span class="skill">MongoDB</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="img1.jpg" alt="Health & Fitness App">
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Health & Fitness App</h3>
+                        <p>Mobile application that tracks workouts, nutrition, and health metrics with personalized
+                            recommendations.</p>
+                        <div>
+                            <span class="skill">React Native</span>
+                            <span class="skill">GraphQL</span>
+                            <span class="skill">AWS</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="istockphoto-1496029848-612x612.jpg" alt="Project Management Tool" style="width: 80%;">
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Project Management Tool</h3>
+                        <p>Collaborative tool for teams to manage projects, tasks, and deadlines with real-time updates
+                            and analytics.</p>
+                        <div>
+                            <span class="skill">TypeScript</span>
+                            <span class="skill">Next.js</span>
+                            <span class="skill">PostgreSQL</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact">
+            <h2>Get in Touch</h2>
+            <p>I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision.
+                Feel free to contact me using the information below:</p>
+            <div style="display: flex; flex-direction: column; gap: 1rem; margin-top: 2rem;">
+                <div style="display: flex; align-items: center; gap: 1rem;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                        <polyline points="22,6 12,13 2,6"></polyline>
+                    </svg>
+                    <span>john.willums@example.com</span>
+                </div>
+                <div style="display: flex; align-items: center; gap: 1rem;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path
+                            d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
+                        </path>
+                    </svg>
+                    <span>+1 (555) 123-4567</span>
+                </div>
+                <div style="display: flex; align-items: center; gap: 1rem;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                        <circle cx="12" cy="10" r="3"></circle>
+                    </svg>
+                    <span>San Francisco, CA</span>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 John Willums. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Mobile navigation toggle
+            const mobileNavToggle = document.getElementById('mobileNavToggle');
+            const navLinks = document.getElementById('navLinks');
+
+            mobileNavToggle.addEventListener('click', function () {
+                navLinks.classList.toggle('active');
+            });
+
+            // Navigation active state
+            const sections = document.querySelectorAll('section');
+            const navItems = document.querySelectorAll('.nav-links a');
+
+            window.addEventListener('scroll', function () {
+                let current = '';
+
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.clientHeight;
+                    if (pageYOffset >= (sectionTop - 200)) {
+                        current = section.getAttribute('id');
+                    }
+                });
+
+                navItems.forEach(item => {
+                    item.classList.remove('active');
+                    if (item.getAttribute('href').substring(1) === current) {
+                        item.classList.add('active');
+                    }
+                });
+            });
+
+            // Download CV functionality
+            document.getElementById('downloadCV').addEventListener('click', function (e) {
+                e.preventDefault();
+
+                // Create some dummy CV content
+                const cvContent = `
+                JOHN WILLUMS
+                Senior Software Developer
+                john.willums@example.com | +1 (555) 123-4567 | San Francisco, CA
+                
+                PROFESSIONAL EXPERIENCE
+                
+                Senior Software Developer
+                TechNova Solutions | 2021 - Present
+                • Led the development of multiple web and mobile applications
+                • Implemented CI/CD pipelines for automated testing and deployment
+                • Mentored junior developers and conducted code reviews
+                • Collaborated with cross-functional teams to deliver high-quality products
+                
+                Software Developer
+                Innovate Digital | 2018 - 2021
+                • Developed and maintained web applications using React, Node.js, and GraphQL
+                • Optimized application performance and implemented responsive designs
+                • Worked closely with designers and product managers to enhance user experience
+                
+                Junior Developer
+                WebFront Technologies | 2016 - 2018
+                • Built and maintained client websites and applications
+                • Worked with various frontend technologies
+                • Gained experience in full-stack development
+                • Participated in code reviews and team knowledge-sharing sessions
+                
+                EDUCATION
+                
+                Bachelor of Science in Computer Science
+                University of Technology | 2012 - 2016
+                • Graduated with honors
+                • Specialized in software engineering and web technologies
+                • Led multiple student projects and participated in hackathons
+                
+                SKILLS
+                
+                Programming Languages: JavaScript, TypeScript, Python, HTML, CSS
+                Frameworks & Libraries: React, Node.js, Express, React Native, Next.js
+                Databases: PostgreSQL, MongoDB, MySQL
+                Cloud Services: AWS, Google Cloud Platform
+                Tools & Methodologies: Git, Docker, CI/CD, Agile, Scrum
+                
+                PROJECTS
+                
+                E-commerce Platform
+                A modern e-commerce solution with real-time inventory management, secure payment processing, and responsive design.
+                
+                Health & Fitness App
+                Mobile application that tracks workouts, nutrition, and health metrics with personalized recommendations.
+                
+                Project Management Tool
+                Collaborative tool for teams to manage projects, tasks, and deadlines with real-time updates and analytics.
+                
+                CERTIFICATIONS
+                
+                AWS Certified Developer - Associate
+                Certified Scrum Master (CSM)
+                Google Cloud Professional Developer
+                `;
+
+                // Create a Blob with the CV content
+                const blob = new Blob([cvContent], { type: 'text/plain' });
+
+                // Create a download link
+                const link = document.createElement('a');
+                link.href = URL.createObjectURL(blob);
+                link.download = 'John_Willums_CV.txt';
+
+                // Trigger the download
+                document.body.appendChild(link);
+                link.click();
+
+                // Clean up
+                document.body.removeChild(link);
+                URL.revokeObjectURL(link.href);
+            });
+        });
+    </script>
+</body>
+
+</html>
