@@ -40,6 +40,7 @@ function addContact() {
         openpopup("Added successfully...!");
         resetFields();
         displayData();
+        window.href="https://govardhaninfotech.github.io/Contact-Website-/contact.html"
 
         // showAlert("added successfully", "success")
 
