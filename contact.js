@@ -26,6 +26,7 @@
 var contacts = []
 
 function addContact() {
+    console.log(1)
     var ContactName = document.getElementById("t1").value;
     var email = document.getElementById("t2").value;
     var number = document.getElementById("t3").value;
