@@ -42,8 +42,17 @@
 
         .btn {
             text-decoration: none;
-            color: #007BFF;
+            color: #fff;
             margin: 5px;
+            background: transparent;
+            /* border: 2px solid #fff; */
+        }
+
+        #btn1 {
+            text-decoration: none;
+            color: hsl(0, 0%, 100%);
+            margin: 5px;
+            background-color: #268d00;
         }
     </style>
 
@@ -71,19 +80,20 @@
             <form action="" id="content-form" class="row justify-content-center md-4" autocomplete="off">
                 <div class="col-8 mt-4">
                     <label for="name">Contact Name</label>
-                    <input class="form-control" type="text" id="t1" placeholder="Enter Contact Name">
+                    <input class="form-control" type="text" id="t1" placeholder="Enter Contact Name" required>
                 </div>
                 <div class="col-8 mt-4">
                     <label for="name">E-mail
                     </label>
-                    <input class="form-control" type="text" id="t2" placeholder="Enter E-mail id">
+                    <input class="form-control" type="email" id="t2" placeholder="Enter E-mail id" required>
                 </div>
                 <div class="col-8 mt-4">
                     <label for="name">Contact Number</label>
-                    <input class="form-control" type="number" id="t3" placeholder="Enter Contact number">
+                    <input class="form-control" type="number" id="t3" placeholder="Enter Contact number" required>
                 </div>
                 <div class="col-8 mt-3">
-                    <input class="btn btn-success add btn" type="button" value="Add Contact" onclick="addContact()">
+                    <input class="btn btn-success add btn" id="btn1" type="submit" value="Add Contact"
+                        onclick="addContact()">
 
                 </div>
             </form>
@@ -98,7 +108,7 @@
                         </tr>
                     </thead>
                     <tbody id="cd">
-<!--                         <tr>
+                        <!--                         <tr>
                             <td>John</td>
                             <td>john@gmail.com</td>
                             <td>1234567890</td>
@@ -145,7 +155,7 @@
     <div id="rst"></div> -->
 
             <!-- 
-            <script>
+            <script>    
                 $(function () {
                     $("#nav").load("nav.html")
 
